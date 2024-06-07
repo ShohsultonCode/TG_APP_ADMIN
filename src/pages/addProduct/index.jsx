@@ -52,7 +52,7 @@ const Index = () => {
             setTimeout(() => navigate('/'), 2000); // Redirect to home or product list page after 2 seconds
         } catch (error) {
             console.error('Error creating product:', error);
-            toast.error('Error creating product: ' + error.response?.data?.message || 'Unknown error');
+            toast.error('Error creating product: ' + error.response?.data?.data.message || 'Unknown error');
         }
     };
 

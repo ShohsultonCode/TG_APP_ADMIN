@@ -66,7 +66,7 @@ const Index = () => {
 
     return (
         <div className="container mt-5">
-            <h1 className="mb-4">Create Product</h1>
+            <h1 className="mb-4">Create Product for Admin</h1>
             <motion.form
                 onSubmit={handleSubmit}
                 initial={{ opacity: 0, y: -20 }}
