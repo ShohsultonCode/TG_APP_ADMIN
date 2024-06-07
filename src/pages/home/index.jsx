@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../../components/Loader';
-import './Index.css'; // Ensure this imports your CSS file
 
 const Index = () => {
     const [products, setProducts] = useState([]);
