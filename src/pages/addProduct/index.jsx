@@ -66,7 +66,10 @@ const Index = () => {
 
     return (
         <div className="container mt-5">
-            <h1 className="mb-4">Create Product</h1>
+            <div className="d-flex justify-content-between align-items-center mb-4">
+                <h1 className="mb-0">Create Product</h1>
+                <button type="button" className="btn btn-secondary" onClick={() => navigate('/')}>Back</button>
+            </div>
             <motion.form
                 onSubmit={handleSubmit}
                 initial={{ opacity: 0, y: -20 }}
@@ -75,6 +78,7 @@ const Index = () => {
                 className="form"
             >
                 <div className="form-grid">
+
                     <div className="left-side">
                         <div className="mb-3">
                             <label htmlFor="productName" className="form-label">Product Name</label>
@@ -141,7 +145,6 @@ const Index = () => {
                     </div>
                 </div>
                 <button type="submit" className="btn btn-primary">Add Product</button>
-                <button type="button" className="btn btn-secondary ml-3" onClick={() => navigate('/')}>Back</button>
             </motion.form>
             <ToastContainer />
         </div>
