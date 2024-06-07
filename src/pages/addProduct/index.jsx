@@ -141,6 +141,7 @@ const Index = () => {
                     </div>
                 </div>
                 <button type="submit" className="btn btn-primary">Add Product</button>
+                <button type="button" className="btn btn-secondary ml-3" onClick={() => navigate('/')}>Back</button>
             </motion.form>
             <ToastContainer />
         </div>
