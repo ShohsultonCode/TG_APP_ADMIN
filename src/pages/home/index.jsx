@@ -6,6 +6,8 @@ const Index = () => {
     const [products, setProducts] = useState([]);
     const [userId, setUserId] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [firstName, setFirstName] = useState("Unknown");
+    const [lastName, setLastName] = useState("Unknown");
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -28,8 +30,25 @@ const Index = () => {
             }
         };
 
+        const fetchUserInfo = async () => {
+            try {
+                const response = await fetch(`https://api.telegram.org/bot${YOUR_BOT_TOKEN}/getChat?chat_id=${userId}`);
+                const data = await response.json();
+                if (data && data.result) {
+                    const { first_name, last_name } = data.result;
+                    setFirstName(first_name || "Unknown");
+                    setLastName(last_name || "Unknown");
+                }
+            } catch (error) {
+                console.error('Error fetching user info:', error);
+            }
+        };
+
         fetchProducts();
-    }, []);
+        if (userId) {
+            fetchUserInfo();
+        }
+    }, [userId]);
 
     const handleDelete = async (productId) => {
         try {   
@@ -52,7 +71,10 @@ const Index = () => {
                 <h1 className="titlecha">Products:</h1>
                 <button onClick={() => navigate("/add/product")} className='btn btn-outline-success'>Add Product</button>
             </div>
-            {userId && <p>User ID: {userId}</p>}
+            <div>
+                <h3>First Name: {firstName}</h3>
+                <h3>Last Name: {lastName}</h3>
+            </div>
 
             {loading ? (
                 <Loader />

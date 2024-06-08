@@ -86,7 +86,7 @@ const ProductDetail = () => {
     const handleChange = (e) => {
         const { name, value, files } = e.target;
         const newValue = files ? files[0] : value;
-        
+
         setProduct((prevProduct) => ({
             ...prevProduct,
             [name]: newValue
@@ -98,7 +98,10 @@ const ProductDetail = () => {
     }
     return (
         <div className="container mt-5">
-            <h1 className="mb-4">Product Details</h1>
+            <div className="d-flex justify-content-between align-items-center mb-4 backbutton">
+                <h2 className="mb-4">Product Details</h2>
+                <button type="button" className="btn btn-secondary" onClick={() => navigate('/')}>Back</button>
+            </div>
             <form onSubmit={handleUpdate}>
                 <div className="mb-3">
                     {product.product_image && (
