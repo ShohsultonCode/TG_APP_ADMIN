@@ -76,7 +76,7 @@ const Index = () => {
     return (
         <div className="container mt-5">
             <div className="d-flex justify-content-between align-items-center mb-4">
-                <h1 className="titlecha">Products: </h1>
+                <h3 className="titlecha">Products: </h3>
                 <button onClick={() => navigate("/add/product")} className='btn btn-outline-success'>Add Product</button>
                 <button onClick={() => navigate("/orders")} className='btn btn-outline-success'>Orders</button>
             </div>
