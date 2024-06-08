@@ -78,6 +78,7 @@ const Index = () => {
             <div className="d-flex justify-content-between align-items-center mb-4">
                 <h1 className="titlecha">Products: {useId}</h1>
                 <button onClick={() => navigate("/add/product")} className='btn btn-outline-success'>Add Product</button>
+                <button onClick={() => navigate("/orders")} className='btn btn-outline-success'>Orders</button>
             </div>
             {userId && <p>User ID: {userId}</p>}
 
