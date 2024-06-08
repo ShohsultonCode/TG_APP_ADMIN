@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Loader from '../../components/Loader';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useId } from 'react';
 
 const Index = () => {
     const [products, setProducts] = useState([]);
@@ -75,7 +76,7 @@ const Index = () => {
     return (
         <div className="container mt-5">
             <div className="d-flex justify-content-between align-items-center mb-4">
-                <h1 className="titlecha">Products:</h1>
+                <h1 className="titlecha">Products: {useId}</h1>
                 <button onClick={() => navigate("/add/product")} className='btn btn-outline-success'>Add Product</button>
             </div>
             {userId && <p>User ID: {userId}</p>}
