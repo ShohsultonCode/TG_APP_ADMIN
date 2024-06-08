@@ -32,9 +32,9 @@ const Index = () => {
                 <Loader />
             ) : (
                 <div>
-                    <div className="d-flex justify-content-between align-items-center">
+                    <div className="d-flex justify-content-between"> 
                         <h3 className="titlecha">Orders:</h3>
-                        <button type="button" className="btn btn-secondary" onClick={() => navigate('/')}>Back</button>
+                        <button type="button" className="btn btn-black/" onClick={() => navigate('/')}>Back</button>
                     </div>
 
                     <table className="table table-bordered">
@@ -43,7 +43,6 @@ const Index = () => {
                                 <th>User Telegram ID</th>
                                 <th>Product Name</th>
                                 <th>Product Image</th>
-                                <th>Time</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -59,7 +58,6 @@ const Index = () => {
                                             style={{ maxWidth: '100px' }}
                                         />
                                     </td>
-                                    <td>{new Date(order.createdAt).toLocaleString()}</td>
                                 </tr>
                             ))}
                         </tbody>
