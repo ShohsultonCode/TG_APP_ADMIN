@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../../components/Loader';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Index = () => {
     const [products, setProducts] = useState([]);
@@ -46,6 +48,30 @@ const Index = () => {
         navigate(`/update/${productId}`);
     };
 
+    const handleOrder = async (productId) => {
+        try {
+            const response = await fetch('https://shohsulton.uz/webappbot/api/orders/create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    order_telegram_id: userId,
+                    order_product_id: productId
+                })
+            });
+            const data = await response.json();
+            if (response.ok) {
+                toast.success('Order placed successfully!');
+            } else {
+                toast.error(data.message || 'Failed to place order');
+            }
+        } catch (error) {
+            console.error('Error placing order:', error);
+            toast.error('Failed to place order');
+        }
+    };
+
     return (
         <div className="container mt-5">
             <div className="d-flex justify-content-between align-items-center mb-4">
@@ -60,7 +86,7 @@ const Index = () => {
                 <div className="row row-cols-2">
                     {products.map((product, index) => (
                         <div className="col-6 mb-4 rounded" key={index}>
-                            <div className="card h-100" onClick={() => navigate(`/products/${product._id}`)}>
+                            <div className="card h-100">
                                 {product.product_image && (
                                     <img src={`https://shohsulton.uz/webappbot/api/images/${product.product_image}`} className="card-img-top img-fluid product-image" alt={product.product_name} />
                                 )}
@@ -68,13 +94,17 @@ const Index = () => {
                                     <h5 className="card-title">{product.product_name}</h5>
                                     <h6 className="card-subtitle mb-2 text-muted">Type: {product.product_category.category_name}</h6>
                                     <p className="card-text">Price: ${product.product_price.toFixed(2)}</p>
-                                    <button className="btn btn-primary buttoncha">Order</button>
+                                    <div className="d-flex justify-content-between">
+                                        <button className="btn btn-primary buttoncha" onClick={() => handleOrder(product._id)}>Order</button>
+                                        <button className="btn btn-warning buttoncha" onClick={() => navigate(`/products/${product._id}`)}>Edit</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     ))}
                 </div>
             )}
+            <ToastContainer />
         </div>
     );
 };
