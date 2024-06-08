@@ -47,13 +47,13 @@ const Index = () => {
                         </thead>
                         <tbody>
                             {orders.map((order) => (
-                                <tr key={order._id}>
-                                    <td>{order.order_user_id.user_telegram_id}</td>
-                                    <td>{order.order_product_id.product_name}</td>
+                                <tr key={order?._id}>
+                                    <td>{order?.order_user_id?.user_telegram_id}</td>
+                                    <td>{order?.order_product_id?.product_name}</td>
                                     <td>
                                         <img
-                                            src={`https://shohsulton.uz/webappbot/api/images/${order.order_product_id.product_image}`}
-                                            alt={order.order_product_id.product_name}
+                                            src={`https://shohsulton.uz/webappbot/api/images/${order?.order_product_id?.product_image}`}
+                                            alt={order?.order_product_id?.product_name}
                                             className="img-fluid"
                                             style={{ maxWidth: '100px' }}
                                         />
