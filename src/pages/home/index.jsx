@@ -32,7 +32,7 @@ const Index = () => {
     }, []);
 
     const handleDelete = async (productId) => {
-        try {
+        try {   
             await fetch(`https://shohsulton.uz/webappbot/api/products/${productId}`, {
                 method: 'DELETE',
             });
@@ -60,7 +60,7 @@ const Index = () => {
                 <div className="row row-cols-2">
                     {products.map((product, index) => (
                         <div className="col-6 mb-4 rounded" key={index}>
-                            <div className="card h-100">
+                            <div className="card h-100" onClick={() => navigate(`/products/${product._id}`)}>
                                 {product.product_image && (
                                     <img src={`https://shohsulton.uz/webappbot/api/images/${product.product_image}`} className="card-img-top img-fluid product-image" alt={product.product_name} />
                                 )}
@@ -69,7 +69,7 @@ const Index = () => {
                                     <h6 className="card-subtitle mb-2 text-muted">Type: {product.product_category.category_name}</h6>
                                     <p className="card-text">Price: ${product.product_price.toFixed(2)}</p>
                                     <button className="btn btn-primary buttoncha">Order</button>
-                                    {userId === '393939393' && (
+                                    {userId === '5171708849' && (
                                         <div className="mt-2">
                                             <button onClick={() => handleEdit(product._id)} className="btn btn-warning me-2">Edit</button>
                                             <button onClick={() => handleDelete(product._id)} className="btn btn-danger">Delete</button>

@@ -66,8 +66,8 @@ const Index = () => {
 
     return (
         <div className="container mt-5">
-            <div className="d-flex justify-content-between align-items-center mb-4">
-                <h1 className="mb-0">Create Product</h1>
+            <div className="d-flex justify-content-between align-items-center mb-4 backbutton">
+                <h2 className="">Create Product</h2>
                 <button type="button" className="btn btn-secondary" onClick={() => navigate('/')}>Back</button>
             </div>
             <motion.form
