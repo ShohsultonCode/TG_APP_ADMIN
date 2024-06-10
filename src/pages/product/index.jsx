@@ -170,7 +170,7 @@ const ProductDetail = () => {
                     </select>
                 </div>
                 <button type="submit" className="btn btn-primary">Update Product</button>
-                <button type="button" className="btn btn-danger ms-2" onClick={handleDelete}>Delete Product</button>
+                <button type="button" className="btn btn-danger ms-2 w-100 mt-2" onClick={handleDelete}>Delete Product</button>
             </form>
             <ToastContainer />
         </div>

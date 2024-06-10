@@ -109,7 +109,8 @@ const Index = () => {
                                 className="form-control"
                                 id="productPrice"
                                 value={productPrice}
-                                onChange={(e) => setProductPrice(e.target.value)}
+                                onChange={(e) => setProductPrice(Math.max(1, parseInt(e.target.value)))}
+                                 min={1}
                                 required
                             />
                         </div>
