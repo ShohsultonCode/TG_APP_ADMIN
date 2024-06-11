@@ -4,6 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from '../../components/Loader';
 
+
 const Index = () => {
     const [products, setProducts] = useState([]);
     const [userId, setUserId] = useState(localStorage.getItem('telegramUserId'));
