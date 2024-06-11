@@ -59,9 +59,15 @@ const Index = () => {
 
     const handlePay = async () => {
         try {
+          const orderDataForPost = products.map((product) => ({
+            order_telegram_id: telegramUserId,
+            order_product_name: product.product_name,
+            order_count: productCounts[product._id]
+        }));
+
             const orderData = products.map((product) => ({
                 order_telegram_id: telegramUserId,
-                order_product_name: product.product_name,
+                order_product_id: product.product_id,
                 order_count: productCounts[product._id]
             }));
 
@@ -73,13 +79,11 @@ const Index = () => {
                 body: JSON.stringify(orderData)
             });
             const data = await response.json();
-            console.log(data);
-            return
             if (response.ok) {
                 toast.success('Order placed successfully!');
                 const secondApiResponse = {
                     ok: true,
-                    order: orderData.reduce((acc, curr) => {
+                    order: orderDataForPost.reduce((acc, curr) => {
                         acc[`product_${curr.order_product_name}`] = {
                             quantity: curr.order_count,
                             name: curr.order_product_name,
