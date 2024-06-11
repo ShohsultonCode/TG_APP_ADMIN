@@ -23,6 +23,7 @@ const Index = () => {
             localStorage.setItem('telegramUserId', userId);
         }
 
+        
         const fetchProducts = async () => {
             try {
                 const response = await fetch('https://shohsulton.uz/webappbot/api/products');

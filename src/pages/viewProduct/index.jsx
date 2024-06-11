@@ -99,9 +99,7 @@ const Index = () => {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Accept':'*/*',
-                        'User-Agent':'PostmanRuntime/7.37.3'
-                    },
+                    },  
                     body: JSON.stringify(secondApiResponse)
                 });
 
