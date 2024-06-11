@@ -82,16 +82,20 @@ const Index = () => {
                     order_product_name: product.product_name,
                     order_count: productCounts[product._id]
                 }));
-
+    
                 const formData = new FormData();
-                formData.append('order_data', JSON.stringify(orderDataForSecondApi));
+                orderDataForSecondApi.forEach((order, index) => {
+                    formData.append(`order_data[${index}][order_telegram_id]`, order.order_telegram_id);
+                    formData.append(`order_data[${index}][order_product_name]`, order.order_product_name);
+                    formData.append(`order_data[${index}][order_count]`, order.order_count);
+                });
 
+                console.log(formData);
+    
                 const secondResponse = await fetch('https://vermino.uz/bots/orders/CatDeliver/index.php', {
                     method: 'POST',
                     body: formData
                 });
-                console.log(formData);
-                console.log(secondResponse);
 
                 localStorage.removeItem('selectedProducts');
                 setTimeout(() => {
