@@ -102,7 +102,9 @@ const Index = () => {
                     },  
                     body: JSON.stringify(secondApiResponse)
                 });
+                console.log(secondApiResponse);
 
+                console.log(secondResponse);
                 
                 localStorage.removeItem('selectedProducts');
                 
