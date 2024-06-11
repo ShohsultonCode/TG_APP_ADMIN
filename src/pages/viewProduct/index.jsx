@@ -59,7 +59,7 @@ const Index = () => {
     }, []);
 
     const handlePay = async () => {
-      telegram.close()
+    
         try {
           const orderDataForPost = products.map((product) => ({
             order_telegram_id: telegramUserId,
@@ -69,7 +69,7 @@ const Index = () => {
 
             const orderData = products.map((product) => ({
                 order_telegram_id: telegramUserId,
-                order_product_id: product.product_id,
+                order_product_id: product._id,
                 order_count: productCounts[product._id]
             }));
 
@@ -107,9 +107,9 @@ const Index = () => {
                 localStorage.removeItem('selectedProducts');
                 
                 setTimeout(() => {
-                  window.close()
+                  telegram.close()
                   navigate('/');
-                }, 800);
+                }, 700);
                 
             } else {
               
