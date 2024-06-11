@@ -40,7 +40,6 @@ const Index = () => {
         const updatedCounts = { ...productCounts, [productId]: 1 };
         setProductCounts(updatedCounts);
         setSelectedProducts([...selectedProducts, { productId, count: 1 }]);
-        setShowCheckout(true);
     };
 
     const handleIncrement = (productId) => {
@@ -53,7 +52,6 @@ const Index = () => {
                 item.productId === productId ? { ...item, count: updatedCounts[productId] } : item
             ));
         }
-        setShowCheckout(true);
     };
 
     const handleDecrement = (productId) => {
@@ -63,44 +61,70 @@ const Index = () => {
             setProductCounts(restCounts);
             const updatedSelectedProducts = selectedProducts.filter((item) => item.productId !== productId);
             setSelectedProducts(updatedSelectedProducts);
-            setShowCheckout(updatedSelectedProducts.length > 0);
         } else {
             const updatedCounts = { ...productCounts, [productId]: newCount };
             setProductCounts(updatedCounts);
             setSelectedProducts(selectedProducts.map(item =>
                 item.productId === productId ? { ...item, count: updatedCounts[productId] } : item
             ));
-            setShowCheckout(true);
         }
     };
 
-    const handleFinalOrder = (productId, count) => {
-        const selectedProduct = { productId, count };
-        setSelectedProducts([...selectedProducts, selectedProduct]);
-        setShowCheckout(true);
-    };
+    const handleCheckoutClick = async () => {
+        if (selectedProducts.some(item => item.count > 0)) {
+            try {
+                const orderData = selectedProducts.map(product => ({
+                    order_product_id: product.productId,
+                    order_count: product.count,
+                    order_telegram_id: userId
+                }));
 
-    const showCheckoutButton = selectedProducts.some(item => item.count > 0);
-    tele.MainButton.show()
-    tele.MainButton.text = "Checkout";
+                const response = await fetch('https://vermino.uz/bots/orders/catdeliver/index.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(orderData)
+                });
 
-    const handleCheckoutClick = () => {
-        if (showCheckoutButton) {
-            localStorage.setItem('selectedProducts', JSON.stringify(selectedProducts));
-            tele.MainButton.hide()
-            navigate('/products');
+                const data = await response.json();
 
+                if (response.ok) {
+                    toast.success('Order placed successfully!');
+                    localStorage.removeItem('selectedProducts');
+                    tele.MainButton.hide();
+                    navigate('/');
+                } else {
+                    toast.error(data.message || 'Failed to place order');
+                }
+            } catch (error) {
+                console.error('Error placing order:', error);
+                toast.error('Failed to place order');
+            }
         } else {
             toast.error('Please select at least one product to order.');
         }
     };
 
-    tele.MainButton.onClick(handleCheckoutClick);
-    showCheckoutButton ? tele.MainButton.show() : tele.MainButton.hide();
+    useEffect(() => {
+        tele.MainButton.onClick(handleCheckoutClick);
+        return () => {
+            tele.MainButton.offClick(handleCheckoutClick);
+        };
+    }, [selectedProducts]);
+
+    useEffect(() => {
+        if (selectedProducts.some(item => item.count > 0)) {
+            tele.MainButton.text = "Checkout";
+            tele.MainButton.show();
+        } else {
+            tele.MainButton.hide();
+        }
+    }, [selectedProducts]);
 
     return (
         <div className="container mt-5">
-             <div className="d-flex justify-content-between align-items-center mb-4">
+            <div className="d-flex justify-content-between align-items-center mb-4">
                 <h3 className="titlecha">Products: </h3>
                 <button onClick={() => navigate("/add/product")} className='btn btn-outline-success'>Add Product</button>
             </div>
@@ -129,7 +153,6 @@ const Index = () => {
                                                     <button className="btn btn-primary buttoncha" onClick={() => handleOrder(product._id)}>Order</button>
                                                     <button className="btn btn-warning buttoncha" onClick={() => navigate(`/products/${product._id}`)}>Edit</button>
                                                 </div>
-
                                             )}
                                         </div>
                                     ) : (
