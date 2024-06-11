@@ -10,6 +10,7 @@ const Index = () => {
     const [productCounts, setProductCounts] = useState({});
     const [telegramUserId, setTelegramUserId] = useState(localStorage.getItem('telegramUserId'));
     const navigate = useNavigate();
+    const telegram = window.Telegram.WebApp;
 
     useEffect(() => {
         const fetchSelectedProducts = async () => {
@@ -101,12 +102,14 @@ const Index = () => {
                     body: JSON.stringify(secondApiResponse)
                 });
 
-                console.log(secondResponse);
-
+                
                 localStorage.removeItem('selectedProducts');
+                
                 setTimeout(() => {
-                    navigate('/');
+                  window.close()
+                  navigate('/');
                 }, 800);
+                
             } else {
               
                 toast.error(data.message || 'Failed to place order');
