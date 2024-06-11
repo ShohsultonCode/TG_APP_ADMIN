@@ -9,6 +9,7 @@ const Index = () => {
     const [products, setProducts] = useState([]);
     const [userId, setUserId] = useState(localStorage.getItem('telegramUserId'));
     const [loading, setLoading] = useState(true);
+    const [totalPrice, setTotalPrice] = useState(0);
     const [productCounts, setProductCounts] = useState({});
     const [selectedProducts, setSelectedProducts] = useState([]);
     const navigate = useNavigate();
@@ -36,6 +37,18 @@ const Index = () => {
 
         fetchProducts();
     }, []);
+
+    useEffect(() => {
+        // Calculate total price whenever selected products change
+        let total = 0;
+        selectedProducts.forEach(item => {
+            const product = products.find(prod => prod._id === item.productId);
+            if (product) {
+                total += product.product_price * item.count;
+            }
+        });
+        setTotalPrice(total);
+    }, [selectedProducts, products]);
 
     const handleOrder = (productId) => {
         const updatedCounts = { ...productCounts, [productId]: 1 };
@@ -83,7 +96,7 @@ const Index = () => {
 
     const showCheckoutButton = selectedProducts.some(item => item.count > 0);
     tele.MainButton.show()
-    tele.MainButton.text = "Checkout";
+    tele.MainButton.text = `Buyurtmaga o'tish: ${totalPrice}`;
 
 
     
@@ -92,7 +105,6 @@ const Index = () => {
             localStorage.setItem('selectedProducts', JSON.stringify(selectedProducts));
             tele.MainButton.hide()
             navigate('/products');
-
         } else {
             toast.error('Please select at least one product to order.');
         }
