@@ -114,7 +114,7 @@ const Index = () => {
   };
   
 
-    const handleBack = () => {``
+    const handleBack = () => {
         localStorage.removeItem('selectedProducts');
         navigate("/");
     };
