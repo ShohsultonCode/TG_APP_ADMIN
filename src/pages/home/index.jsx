@@ -82,7 +82,10 @@ const Index = () => {
 
     const showCheckoutButton = selectedProducts.some(item => item.count > 0);
     tele.MainButton.show()
-    tele.MainButton.text = "Checkout";
+    tele.MainButton.text = "Checkout";  ex
+
+
+
 
     const handleCheckoutClick = () => {
         if (showCheckoutButton) {
