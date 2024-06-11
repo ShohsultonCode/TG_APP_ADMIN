@@ -59,7 +59,6 @@ const Index = () => {
     }, []);
 
     const handlePay = async () => {
-      window.close()
       telegram.close()
         try {
           const orderDataForPost = products.map((product) => ({
