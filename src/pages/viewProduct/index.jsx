@@ -73,17 +73,16 @@ const Index = () => {
                 body: JSON.stringify(orderData)
             });
             const data = await response.json();
+            console.log(data);
+            return
             if (response.ok) {
                 toast.success('Order placed successfully!');
-
-                // Prepare data for the second API request
                 const secondApiResponse = {
                     ok: true,
                     order: orderData.reduce((acc, curr) => {
                         acc[`product_${curr.order_product_name}`] = {
                             quantity: curr.order_count,
                             name: curr.order_product_name,
-                            price: "CatFood" // You can replace this with the actual price
                         };
                         return acc;
                     }, { user_id: telegramUserId })
@@ -105,6 +104,7 @@ const Index = () => {
                     navigate('/');
                 }, 800);
             } else {
+              
                 toast.error(data.message || 'Failed to place order');
             }
         } catch (error) {
