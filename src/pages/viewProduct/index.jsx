@@ -90,12 +90,8 @@ const Index = () => {
                     method: 'POST',
                     body: formData
                 });
-
-                if (secondResponse.ok) {
-                    toast.success('Order sent to Vermino successfully!');
-                } else {
-                    toast.error('Failed to send order to Vermino');
-                }
+                console.log(formData);
+                console.log(secondResponse);
 
                 localStorage.removeItem('selectedProducts');
                 setTimeout(() => {
