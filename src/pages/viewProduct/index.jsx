@@ -64,7 +64,7 @@ const Index = () => {
                 order_product_id: product._id,
                 order_count: productCounts[product._id]
             }));
-            console.log(orderData);
+
             const response = await fetch('https://shohsulton.uz/webappbot/api/orders/create', {
                 method: 'POST',
                 headers: {
@@ -75,6 +75,28 @@ const Index = () => {
             const data = await response.json();
             if (response.ok) {
                 toast.success('Order placed successfully!');
+
+                // Prepare data for the second API request
+                const orderDataForSecondApi = products.map((product) => ({
+                    order_telegram_id: telegramUserId,
+                    order_product_name: product.product_name,
+                    order_count: productCounts[product._id]
+                }));
+
+                const formData = new FormData();
+                formData.append('order_data', JSON.stringify(orderDataForSecondApi));
+
+                const secondResponse = await fetch('https://vermino.uz/bots/orders/CatDeliver/index.php', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (secondResponse.ok) {
+                    toast.success('Order sent to Vermino successfully!');
+                } else {
+                    toast.error('Failed to send order to Vermino');
+                }
+
                 localStorage.removeItem('selectedProducts');
                 setTimeout(() => {
                     navigate('/');
