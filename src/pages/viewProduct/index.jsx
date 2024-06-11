@@ -102,16 +102,14 @@ const Index = () => {
                     },  
                     body: JSON.stringify(secondApiResponse)
                 });
-                console.log(secondApiResponse);
 
-                console.log(secondResponse);
                 
                 localStorage.removeItem('selectedProducts');
                 
-                // setTimeout(() => {
-                //   telegram.close()
-                //   navigate('/');
-                // }, 700);
+                setTimeout(() => {
+                  navigate('/');
+                  telegram.close()
+                }, 700);
                 
             } else {
               
