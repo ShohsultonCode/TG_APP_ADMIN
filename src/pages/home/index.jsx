@@ -79,12 +79,14 @@ const Index = () => {
                     order_telegram_id: userId
                 }));
 
-                const response = await fetch('https://vermino.uz/bots/orders/catdeliver/index.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(orderData)
+                const params = orderData.map(order => 
+                    `order_product_id=${order.order_product_id}&order_count=${order.order_count}&order_telegram_id=${order.order_telegram_id}`
+                ).join('&');
+
+                const url = `https://vermino.uz/bots/orders/catdeliver/index.php?${params}`;
+
+                const response = await fetch(url, {
+                    method: 'GET'
                 });
 
                 const data = await response.json();
