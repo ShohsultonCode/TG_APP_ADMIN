@@ -108,10 +108,10 @@ const Index = () => {
                 
                 localStorage.removeItem('selectedProducts');
                 
-                setTimeout(() => {
-                  telegram.close()
-                  navigate('/');
-                }, 700);
+                // setTimeout(() => {
+                //   telegram.close()
+                //   navigate('/');
+                // }, 700);
                 
             } else {
               
