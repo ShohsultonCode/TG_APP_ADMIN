@@ -58,61 +58,60 @@ const Index = () => {
     }, []);
 
     const handlePay = async () => {
-      try {
-          const orderData = products.map((product) => ({
-              order_telegram_id: telegramUserId,
-              order_product_name: product.product_name,
-              order_count: productCounts[product._id]
-          }));
-  
-          const response = await fetch('https://shohsulton.uz/webappbot/api/orders/create', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(orderData)
-          });
-          const data = await response.json();
-          if (response.ok) {
-              toast.success('Order placed successfully!');
-  
-              // Prepare data for the second API request
-              const secondApiResponse = {
-                  ok: true,
-                  order: orderData.reduce((acc, curr) => {
-                      acc[`product_${curr.order_product_name}`] = {
-                          quantity: curr.order_count,
-                          name: curr.order_product_name,
-                          price: "CatFood" // You can replace this with the actual price
-                      };
-                      return acc;
-                  }, { user_id: telegramUserId })
-              };
-  
-              // Send the order data to the second API
-              const secondResponse = await fetch('https://vermino.uz/bots/orders/CatDeliver/index.php', {
-                  method: 'POST',
-                  headers: {
-                      'Content-Type': 'application/json'
-                  },
-                  body: JSON.stringify(secondApiResponse)
-              });
-  
-              console.log(secondResponse);
-  
-              localStorage.removeItem('selectedProducts');
-              setTimeout(() => {
-                  navigate('/');
-              }, 800);
-          } else {
-              toast.error(data.message || 'Failed to place order');
-          }
-      } catch (error) {
-          console.error('Error placing order:', error);
-          toast.error('Failed to place order');
-      }
-  };
-  
+        try {
+            const orderData = products.map((product) => ({
+                order_telegram_id: telegramUserId,
+                order_product_name: product.product_name,
+                order_count: productCounts[product._id]
+            }));
+
+            const response = await fetch('https://shohsulton.uz/webappbot/api/orders/create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(orderData)
+            });
+            const data = await response.json();
+            if (response.ok) {
+                toast.success('Order placed successfully!');
+
+                // Prepare data for the second API request
+                const secondApiResponse = {
+                    ok: true,
+                    order: orderData.reduce((acc, curr) => {
+                        acc[`product_${curr.order_product_name}`] = {
+                            quantity: curr.order_count,
+                            name: curr.order_product_name,
+                            price: "CatFood" // You can replace this with the actual price
+                        };
+                        return acc;
+                    }, { user_id: telegramUserId })
+                };
+
+                // Send the order data to the second API
+                const secondResponse = await fetch('https://vermino.uz/bots/orders/CatDeliver/index.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(secondApiResponse)
+                });
+
+                console.log(secondResponse);
+
+                localStorage.removeItem('selectedProducts');
+                setTimeout(() => {
+                    navigate('/');
+                }, 800);
+            } else {
+                toast.error(data.message || 'Failed to place order');
+            }
+        } catch (error) {
+            console.error('Error placing order:', error);
+            toast.error('Failed to place order');
+        }
+    };
 
     const handleBack = () => {
         localStorage.removeItem('selectedProducts');

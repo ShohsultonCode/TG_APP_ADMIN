@@ -82,11 +82,10 @@ const Index = () => {
 
     const showCheckoutButton = selectedProducts.some(item => item.count > 0);
     tele.MainButton.show()
-    tele.MainButton.text = "Checkout";  ex
+    tele.MainButton.text = "Checkout";
 
 
-
-
+    
     const handleCheckoutClick = () => {
         if (showCheckoutButton) {
             localStorage.setItem('selectedProducts', JSON.stringify(selectedProducts));
