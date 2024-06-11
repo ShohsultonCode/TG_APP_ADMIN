@@ -60,7 +60,7 @@ const Index = () => {
 
     const handlePay = async () => {
       window.close()
-      return
+      telegram.close()
         try {
           const orderDataForPost = products.map((product) => ({
             order_telegram_id: telegramUserId,
