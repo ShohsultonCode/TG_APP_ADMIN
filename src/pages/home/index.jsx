@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from '../../components/Loader';
-
+import './Index.css';  // Import the new CSS file
 
 const Index = () => {
     const [products, setProducts] = useState([]);
@@ -23,7 +23,6 @@ const Index = () => {
             localStorage.setItem('telegramUserId', userId);
         }
 
-        
         const fetchProducts = async () => {
             try {
                 const response = await fetch('https://shohsulton.uz/webappbot/api/products');
@@ -55,7 +54,6 @@ const Index = () => {
         const updatedCounts = { ...productCounts, [productId]: 1 };
         setProductCounts(updatedCounts);
         setSelectedProducts([...selectedProducts, { productId, count: 1 }]);
-        setShowCheckout(true);
     };
 
     const handleIncrement = (productId) => {
@@ -68,7 +66,6 @@ const Index = () => {
                 item.productId === productId ? { ...item, count: updatedCounts[productId] } : item
             ));
         }
-        setShowCheckout(true);
     };
 
     const handleDecrement = (productId) => {
@@ -78,33 +75,28 @@ const Index = () => {
             setProductCounts(restCounts);
             const updatedSelectedProducts = selectedProducts.filter((item) => item.productId !== productId);
             setSelectedProducts(updatedSelectedProducts);
-            setShowCheckout(updatedSelectedProducts.length > 0);
         } else {
             const updatedCounts = { ...productCounts, [productId]: newCount };
             setProductCounts(updatedCounts);
             setSelectedProducts(selectedProducts.map(item =>
                 item.productId === productId ? { ...item, count: updatedCounts[productId] } : item
             ));
-            setShowCheckout(true);
         }
     };
 
     const handleFinalOrder = (productId, count) => {
         const selectedProduct = { productId, count };
         setSelectedProducts([...selectedProducts, selectedProduct]);
-        setShowCheckout(true);
     };
 
     const showCheckoutButton = selectedProducts.some(item => item.count > 0);
-    tele.MainButton.show()
+    tele.MainButton.show();
     tele.MainButton.text = `Buyurtmaga o'tish: ${totalPrice} so'm`;
 
-
-    
     const handleCheckoutClick = () => {
         if (showCheckoutButton) {
             localStorage.setItem('selectedProducts', JSON.stringify(selectedProducts));
-            tele.MainButton.hide()
+            tele.MainButton.hide();
             navigate('/products');
         } else {
             toast.error('Please select at least one product to order.');
@@ -116,7 +108,7 @@ const Index = () => {
 
     return (
         <div className="container mt-5">
-             <div className="d-flex justify-content-between align-items-center mb-4">
+            <div className="d-flex justify-content-between align-items-center mb-4">
                 <h3 className="titlecha">Products: </h3>
                 <button onClick={() => navigate("/add/product")} className='btn btn-outline-success'>Add Product</button>
             </div>
@@ -127,9 +119,9 @@ const Index = () => {
                 <div className="row row-cols-2">
                     {products.map((product, index) => (
                         <div className="col-6 mb-4 rounded" key={index}>
-                            <div className="card h-100">
+                            <div className="card h-100 product-card">
                                 {product.product_image && (
-                                    <img src={`https://shohsulton.uz/webappbot/api/images/${product.product_image}`} className="card-img-top img-fluid product-image" alt={product.product_name} style={{ height: "100%", objectFit: "cover" }} />
+                                    <img src={`https://shohsulton.uz/webappbot/api/images/${product.product_image}`} className="card-img-top img-fluid product-image" alt={product.product_name} />
                                 )}
                                 <div className="card-body">
                                     <h5 className="card-title">{product.product_name}</h5>
@@ -140,13 +132,6 @@ const Index = () => {
                                             <button className="btn btn-danger me-2" onClick={() => handleDecrement(product._id)}>-</button>
                                             <span>{productCounts[product._id]}</span>
                                             <button className="btn btn-success ms-2" onClick={() => handleIncrement(product._id)}>+</button>
-                                            {productCounts[product._id] === 0 && (
-                                                <div className="d-flex justify-content-between">
-                                                    <button className="btn btn-primary buttoncha" onClick={() => handleOrder(product._id)}>Order</button>
-                                                    <button className="btn btn-warning buttoncha" onClick={() => navigate(`/products/${product._id}`)}>Edit</button>
-                                                </div>
-
-                                            )}
                                         </div>
                                     ) : (
                                         <div className="d-flex justify-content-between">
