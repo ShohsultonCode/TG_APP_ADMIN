@@ -130,7 +130,7 @@ const Index = () => {
                                     {productCounts[product._id] ? (
                                         <div>
                                             <button className="btn btn-danger me-2" onClick={() => handleDecrement(product._id)}>-</button>
-                                            <span>{productCounts[product._id]}</span>
+                                            <span className='m-2'>{productCounts[product._id]}</span>
                                             <button className="btn btn-success ms-2" onClick={() => handleIncrement(product._id)}>+</button>
                                         </div>
                                     ) : (
