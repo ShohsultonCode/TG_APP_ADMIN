@@ -163,7 +163,7 @@ const Index = () => {
                     ))}
                 </tbody>
             </table>
-            <button className="btn btn-primary w-100 paycha" onClick={handlePay}>Pay</button>
+            <button className="btn btn-primary w-100 paycha" onClick={handlePay}>Buyurtma berish</button>
             <ToastContainer />
         </div>
     );
