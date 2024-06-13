@@ -12,7 +12,7 @@ const Index = () => {
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const response = await fetch('https://shohsulton.uz/webappbot/api/orders');
+                const response = await fetch('http://botproject.uz/webappbot/api/orders');
                 const data = await response.json();
                 setOrders(data);
                 setLoading(false);
@@ -52,7 +52,7 @@ const Index = () => {
                                     <td>{order?.order_product_id?.product_name}</td>
                                     <td>
                                         <img
-                                            src={`https://shohsulton.uz/webappbot/api/images/${order?.order_product_id?.product_image}`}
+                                            src={`http://botproject.uz/webappbot/api/images/${order?.order_product_id?.product_image}`}
                                             alt={order?.order_product_id?.product_name}
                                             className="card-img-top img-fluid product-image"
                                             style={{ maxWidth: '100px' }}

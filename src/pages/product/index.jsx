@@ -15,7 +15,7 @@ const ProductDetail = () => {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const response = await axios.get(`https://shohsulton.uz/webappbot/api/products/${productId}`);
+                const response = await axios.get(`http://botproject.uz/webappbot/api/products/${productId}`);
                 setProduct(response.data.data);
                 setLoading(false);
             } catch (error) {
@@ -26,7 +26,7 @@ const ProductDetail = () => {
 
         const fetchCategories = async () => {
             try {
-                const response = await axios.get('https://shohsulton.uz/webappbot/api/categories/all');
+                const response = await axios.get('http://botproject.uz/webappbot/api/categories/all');
                 setCategories(response.data.data);
             } catch (error) {
                 console.error('Error fetching categories:', error);
@@ -39,7 +39,7 @@ const ProductDetail = () => {
 
     const handleDelete = async () => {
         try {
-            await axios.delete(`https://shohsulton.uz/webappbot/api/products/${productId}`);
+            await axios.delete(`http://botproject.uz/webappbot/api/products/${productId}`);
             toast.success('Product successfully deleted!');
             setTimeout(() => navigate('/'), 2000);
         } catch (error) {
@@ -68,7 +68,7 @@ const ProductDetail = () => {
         }
 
         try {
-            await axios.put(`https://shohsulton.uz/webappbot/api/products/update/${productId}`, formData, {
+            await axios.put(`http://botproject.uz/webappbot/api/products/update/${productId}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -105,7 +105,7 @@ const ProductDetail = () => {
             <form onSubmit={handleUpdate}>
                 <div className="mb-3">
                     {product.product_image && (
-                        <img src={`https://shohsulton.uz/webappbot/api/images/${product.product_image}`} className="card-img-top img-fluid product-image" alt={product.product_name} />
+                        <img src={`http://botproject.uz/webappbot/api/images/${product.product_image}`} className="card-img-top img-fluid product-image" alt={product.product_name} />
                     )}
                     <input
                         type="file"
