@@ -20,7 +20,7 @@ const Index = () => {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const response = await axios.get('http://botproject.uz/webappbot/api/categories/all');
+                const response = await axios.get('https://botproject.uz/webappbot/api/categories/all');
                 setCategories(response.data.data);
                 setLoading(false);
             } catch (error) {
@@ -42,7 +42,7 @@ const Index = () => {
         formData.append('product_image', productImage);
 
         try {
-            const response = await axios.post('http://botproject.uz/webappbot/api/products/create', formData, {
+            const response = await axios.post('https://botproject.uz/webappbot/api/products/create', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
