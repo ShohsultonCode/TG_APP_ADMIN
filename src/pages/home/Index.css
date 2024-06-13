@@ -11,8 +11,55 @@
 }
 
 .product-image {
-  height: 200px;
-  object-fit: cover;
+  width: 100%;
+  height: 150px;  /* Ensure all images have the same height */
+  object-fit: cover;  /* Ensures the image covers the area without distortion */
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.card-subtitle {
+  font-size: 1rem;
+  color: #6c757d;
+}
+
+.card-text {
+  font-size: 1rem;
+  color: #333;
+}
+
+.btn {
+  border-radius: 5px;
+}
+
+.count-element {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  margin: 0 10px;
+  font-weight: bold;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.count-element:hover {
+  background-color: #e9ecef;
+  transform: scale(1.1);
+}
+
+.d-flex {
+  gap: 10px;
+}
+
+.mt-5 {
+  margin-top: 3rem;
 }

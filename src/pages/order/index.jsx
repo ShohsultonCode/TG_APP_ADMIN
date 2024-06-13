@@ -54,7 +54,7 @@ const Index = () => {
                                         <img
                                             src={`https://shohsulton.uz/webappbot/api/images/${order?.order_product_id?.product_image}`}
                                             alt={order?.order_product_id?.product_name}
-                                            className="img-fluid"
+                                            className="card-img-top img-fluid product-image"
                                             style={{ maxWidth: '100px' }}
                                         />
                                     </td>
