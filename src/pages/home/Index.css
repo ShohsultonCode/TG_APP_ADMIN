@@ -12,8 +12,8 @@
 
 .product-image {
   width: 100%;
-  height: 150px;  /* Ensure all images have the same height */
-  object-fit: cover;  /* Ensures the image covers the area without distortion */
+  height: 150px;
+  object-fit: cover;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
 }
@@ -42,18 +42,17 @@
 }
 
 .count-element {
-  background-color: #f8f9fa;
-  border: 1px solid #dee2e6;
-  padding: 0.5rem 1rem;
-  border-radius: 10px;
-  margin: 0 10px;
-  font-weight: bold;
-  transition: background-color 0.2s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.count-element:hover {
-  background-color: #e9ecef;
-  transform: scale(1.1);
+.count-input {
+  width: 50px;
+  text-align: center;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+  margin: 0 10px;
 }
 
 .d-flex {
