@@ -1,65 +1,65 @@
 .product-card {
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transition: transform 0.2s, box-shadow 0.2s;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .product-image {
-  width: 100%;
-  height: 150px;  /* Ensure all images have the same height */
-  object-fit: cover;  /* Ensures the image covers the area without distortion */
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
+    width: 100%;
+    height: 150px;  /* Ensure all images have the same height */
+    object-fit: cover;  /* Ensures the image covers the area without distortion */
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
 }
 
 .card-body {
-  padding: 20px;
+    padding: 20px;
 }
 
 .card-title {
-  font-size: 1.25rem;
-  font-weight: bold;
+    font-size: 1.25rem;
+    font-weight: bold;
 }
 
 .card-subtitle {
-  font-size: 1rem;
-  color: #6c757d;
+    font-size: 1rem;
+    color: #6c757d;
 }
 
 .card-text {
-  font-size: 1rem;
-  color: #333;
+    font-size: 1rem;
+    color: #333;
 }
 
 .btn {
-  border-radius: 5px;
+    border-radius: 5px;
 }
 
 .count-element {
-  background-color: #f8f9fa;
-  border: 1px solid #dee2e6;
-  padding: 0.5rem 1rem;
-  border-radius: 10px;
-  margin: 0 10px;
-  font-weight: bold;
-  transition: background-color 0.2s, transform 0.2s;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    margin: 0 10px;
+    font-weight: bold;
+    transition: background-color 0.2s, transform 0.2s;
 }
 
 .count-element:hover {
-  background-color: #e9ecef;
-  transform: scale(1.1);
+    background-color: #e9ecef;
+    transform: scale(1.1);
 }
 
 .d-flex {
-  gap: 10px;
+    gap: 10px;
 }
 
 .mt-5 {
-  margin-top: 3rem;
+    margin-top: 3rem;
 }
