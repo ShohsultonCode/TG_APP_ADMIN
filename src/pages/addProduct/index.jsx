@@ -145,7 +145,7 @@ const Index = () => {
                         </div>
                     </div>
                 </div>
-                <button type="submit" className="btn btn-primary">Add Product</button>
+                <button type="submit" className="btn btn-primary">Qo'shish</button>
             </motion.form>
             <ToastContainer />
         </div>

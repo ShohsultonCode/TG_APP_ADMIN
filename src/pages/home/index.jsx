@@ -126,7 +126,7 @@ const Index = () => {
                                 <div className="card-body">
                                     <h5 className="card-title">{product.product_name}</h5>
                                     <h6 className="card-subtitle mb-2 text-muted">Type: {product.product_category.category_name}</h6>
-                                    <p className="card-text">Price: {product.product_price.toFixed(2)}</p>
+                                    <p className="card-text">Price: {product.product_price.toFixed(2)} sum</p>
                                     {productCounts[product._id] ? (
                                         <div>
                                             <button className="btn btn-danger me-2" onClick={() => handleDecrement(product._id)}>-</button>
@@ -135,7 +135,7 @@ const Index = () => {
                                         </div>
                                     ) : (
                                         <div className="d-flex justify-content-between">
-                                            <button className="btn btn-primary buttoncha" onClick={() => handleOrder(product._id)}>Order</button>
+                                            <button className="btn btn-primary buttoncha" onClick={() => handleOrder(product._id)}>Buyurtma</button>
                                             <button className="btn btn-warning buttoncha" onClick={() => navigate(`/products/${product._id}`)}>Edit</button>
                                         </div>
                                     )}
