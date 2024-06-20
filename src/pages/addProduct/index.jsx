@@ -67,8 +67,8 @@ const Index = () => {
     return (
         <div className="container mt-5">
             <div className="d-flex justify-content-between align-items-center mb-4 backbutton">
-                <h2 className="">Create Product</h2>
-                <button type="button" className="btn btn-secondary" onClick={() => navigate('/')}>Back</button>
+                <h2 className="">Product yaratish</h2>
+                <button type="button" className="btn btn-secondary" onClick={() => navigate('/')}>Orqaga</button>
             </div>
             <motion.form
                 onSubmit={handleSubmit}
@@ -81,7 +81,7 @@ const Index = () => {
 
                     <div className="left-side">
                         <div className="mb-3">
-                            <label htmlFor="productName" className="form-label">Product Name</label>
+                            <label htmlFor="productName" className="form-label">Product nomi</label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -92,7 +92,7 @@ const Index = () => {
                             />
                         </div>
                         <div className="mb-3">
-                            <label htmlFor="productDescription" className="form-label">Product Description</label>
+                            <label htmlFor="productDescription" className="form-label">Product haqida</label>
                             <textarea
                                 className="form-control"
                                 id="productDescription"
@@ -103,7 +103,7 @@ const Index = () => {
                             ></textarea>
                         </div>
                         <div className="mb-3">
-                            <label htmlFor="productPrice" className="form-label">Product Price</label>
+                            <label htmlFor="productPrice" className="form-label">Product Narxi</label>
                             <input
                                 type="number"
                                 className="form-control"
@@ -125,7 +125,7 @@ const Index = () => {
                                 onChange={(e) => setProductCategory(e.target.value)}
                                 required
                             >
-                                <option value="">Select a category</option>
+                                <option value="">Category tanlash</option>
                                 {categories.map((category) => (
                                     <option key={category._id} value={category._id}>
                                         {category.category_name}
@@ -134,7 +134,7 @@ const Index = () => {
                             </select>
                         </div>
                         <div className="mb-3">
-                            <label htmlFor="productImage" className="form-label">Product Image</label>
+                            <label htmlFor="productImage" className="form-label">Product Rasmi</label>
                             <input
                                 type="file"
                                 className="form-control"

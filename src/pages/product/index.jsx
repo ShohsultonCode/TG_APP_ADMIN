@@ -100,7 +100,7 @@ const ProductDetail = () => {
         <div className="container mt-5">
             <div className="d-flex justify-content-between align-items-center mb-4 backbutton">
                 <h2 className="mb-4">Product Details</h2>
-                <button type="button" className="btn btn-secondary" onClick={() => navigate('/')}>Back</button>
+                <button type="button" className="btn btn-secondary" onClick={() => navigate('/')}>Orqaga</button>
             </div>
             <form onSubmit={handleUpdate}>
                 <div className="mb-3">
@@ -116,7 +116,7 @@ const ProductDetail = () => {
                     />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="productName" className="form-label">Product Name</label>
+                    <label htmlFor="productName" className="form-label">Product nomi</label>
                     <input
                         type="text"
                         className="form-control"
@@ -128,7 +128,7 @@ const ProductDetail = () => {
                     />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="productDescription" className="form-label">Product Description</label>
+                    <label htmlFor="productDescription" className="form-label">Product haqida</label>
                     <textarea
                         className="form-control"
                         id="productDescription"
@@ -140,7 +140,7 @@ const ProductDetail = () => {
                     ></textarea>
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="productPrice" className="form-label">Product Price</label>
+                    <label htmlFor="productPrice" className="form-label">Product narxi</label>
                     <input
                         type="number"
                         className="form-control"
@@ -152,7 +152,7 @@ const ProductDetail = () => {
                     />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="productCategory" className="form-label">Product Category</label>
+                    <label htmlFor="productCategory" className="form-label">Product Categoriyasi</label>
                     <select
                         className="form-select"
                         id="productCategory"
@@ -161,7 +161,7 @@ const ProductDetail = () => {
                         onChange={handleChange}
                         required
                     >
-                        <option value="">Select a category</option>
+                        <option value="">Categoriya tanlash:</option>
                         {categories.map((category) => (
                             <option key={category._id} value={category._id}>
                                 {category.category_name}
@@ -169,8 +169,8 @@ const ProductDetail = () => {
                         ))}
                     </select>
                 </div>
-                <button type="submit" className="btn btn-primary">Update Product</button>
-                <button type="button" className="btn btn-danger ms-2 w-100 mt-2" onClick={handleDelete}>Delete Product</button>
+                <button type="submit" className="btn btn-primary">Tahrirlash</button>
+                <button type="button" className="btn btn-danger ms-2 w-100 mt-2" onClick={handleDelete}>O'chirish</button>
             </form>
             <ToastContainer />
         </div>
