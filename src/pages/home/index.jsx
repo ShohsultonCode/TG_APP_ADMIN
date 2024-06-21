@@ -135,7 +135,6 @@ const Index = () => {
                                         </div>
                                     ) : (
                                         <div className="d-flex justify-content-between">
-                                            <button className="btn btn-primary buttoncha" onClick={() => handleOrder(product._id)}>Buyurtma</button>
                                             <button className="btn btn-warning buttoncha" onClick={() => navigate(`/products/${product._id}`)}>✏️</button>
                                         </div>
                                     )}
