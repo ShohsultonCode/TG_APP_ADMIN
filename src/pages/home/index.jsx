@@ -25,7 +25,7 @@ const Index = () => {
 
         const fetchProducts = async () => {
             try {
-                const response = await fetch('https://botproject.uz/api/products');
+                const response = await fetch('http://localhost:7002/api/products');
                 const data = await response.json();
                 setProducts(data.data);
                 setLoading(false);
@@ -121,7 +121,7 @@ const Index = () => {
                         <div className="col-6 mb-4 rounded" key={index}>
                             <div className="card h-100 product-card">
                                 {product.product_image && (
-                                    <img src={`https://botproject.uz/api/images/${product.product_image}`} className="card-img-top img-fluid product-image" alt={product.product_name} />
+                                    <img src={`http://localhost:7002/api/images/${product.product_image}`} className="card-img-top img-fluid product-image" alt={product.product_name} />
                                 )}
                                 <div className="card-body">
                                     <h5 className="card-title">{product.product_name}</h5>
